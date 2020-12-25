@@ -211,6 +211,7 @@ func Poll(fds []PollFd, timeout int) (n int, err error) {
 func Renameat(olddirfd int, oldpath string, newdirfd int, newpath string) (err error) {
 	return Renameat2(olddirfd, oldpath, newdirfd, newpath, 0)
 }
+<<<<<<< HEAD
 
 //sys	kexecFileLoad(kernelFd int, initrdFd int, cmdlineLen int, cmdline string, flags int) (err error)
 
@@ -228,3 +229,5 @@ func KexecFileLoad(kernelFd int, initrdFd int, cmdline string, flags int) error 
 // dup2 exists because func Dup3 in syscall_linux.go references
 // it in an unreachable path. dup2 isn't available on arm64.
 func dup2(oldfd int, newfd int) error
+=======
+>>>>>>> Vendor update

@@ -185,12 +185,16 @@ struct ltchars {
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/time.h>
+<<<<<<< HEAD
 #include <sys/select.h>
+=======
+>>>>>>> Vendor update
 #include <sys/signalfd.h>
 #include <sys/socket.h>
 #include <sys/timerfd.h>
 #include <sys/uio.h>
 #include <sys/xattr.h>
+<<<<<<< HEAD
 #include <linux/bpf.h>
 #include <linux/can.h>
 #include <linux/capability.h>
@@ -207,6 +211,9 @@ struct ltchars {
 #include <linux/genetlink.h>
 #include <linux/hdreg.h>
 #include <linux/icmpv6.h>
+=======
+#include <linux/errqueue.h>
+>>>>>>> Vendor update
 #include <linux/if.h>
 #include <linux/if_addr.h>
 #include <linux/if_alg.h>
@@ -280,6 +287,7 @@ struct ltchars {
 #define FS_KEY_DESC_PREFIX              "fscrypt:"
 #define FS_KEY_DESC_PREFIX_SIZE         8
 #define FS_MAX_KEY_SIZE                 64
+<<<<<<< HEAD
 
 // The code generator produces -0x1 for (~0), but an unsigned value is necessary
 // for the tipc_subscr timeout __u32 field.
@@ -290,6 +298,8 @@ struct ltchars {
 // Including linux/l2tp.h here causes conflicts between linux/in.h
 // and netinet/in.h included via net/route.h above.
 #define IPPROTO_L2TP		115
+=======
+>>>>>>> Vendor update
 '
 
 includes_NetBSD='
@@ -485,7 +495,11 @@ ccflags="$@"
 		$2 ~ /^(MS|MNT|UMOUNT)_/ ||
 		$2 ~ /^NS_GET_/ ||
 		$2 ~ /^TUN(SET|GET|ATTACH|DETACH)/ ||
+<<<<<<< HEAD
 		$2 ~ /^(O|F|[ES]?FD|NAME|S|PTRACE|PT|TFD)_/ ||
+=======
+		$2 ~ /^(O|F|[ES]?FD|NAME|S|PTRACE|PT)_/ ||
+>>>>>>> Vendor update
 		$2 ~ /^KEXEC_/ ||
 		$2 ~ /^LINUX_REBOOT_CMD_/ ||
 		$2 ~ /^LINUX_REBOOT_MAGIC[12]$/ ||

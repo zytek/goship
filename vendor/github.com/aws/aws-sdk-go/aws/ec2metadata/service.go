@@ -41,7 +41,11 @@ const (
 	enableTokenProviderHandlerName = "enableTokenProviderHandler"
 
 	// TTL constants
+<<<<<<< HEAD
 	defaultTTL          = 21600 * time.Second
+=======
+	defaultTTL = 21600 * time.Second
+>>>>>>> Vendor update
 	ttlExpirationWindow = 30 * time.Second
 )
 

@@ -126,7 +126,11 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 
 	defs := []endpoint{p.Defaults, s.Defaults}
 
+<<<<<<< HEAD
 	return e.resolve(service, p.ID, region, p.DNSSuffix, defs, opt)
+=======
+	return e.resolve(service, p.ID, region, p.DNSSuffix, defs, opt), nil
+>>>>>>> Vendor update
 }
 
 func serviceList(ss services) []string {
@@ -235,7 +239,11 @@ func getByPriority(s []string, p []string, def string) string {
 	return s[0]
 }
 
+<<<<<<< HEAD
 func (e endpoint) resolve(service, partitionID, region, dnsSuffix string, defs []endpoint, opts Options) (ResolvedEndpoint, error) {
+=======
+func (e endpoint) resolve(service, partitionID, region, dnsSuffix string, defs []endpoint, opts Options) ResolvedEndpoint {
+>>>>>>> Vendor update
 	var merged endpoint
 	for _, def := range defs {
 		merged.mergeIn(def)
@@ -260,10 +268,13 @@ func (e endpoint) resolve(service, partitionID, region, dnsSuffix string, defs [
 	if opts.UseDualStack && e.HasDualStack == boxedTrue {
 		hostname = e.DualStackHostname
 		region = signingRegion
+<<<<<<< HEAD
 	}
 
 	if !validateInputRegion(region) {
 		return ResolvedEndpoint{}, fmt.Errorf("invalid region identifier format provided")
+=======
+>>>>>>> Vendor update
 	}
 
 	u := strings.Replace(hostname, "{service}", service, 1)

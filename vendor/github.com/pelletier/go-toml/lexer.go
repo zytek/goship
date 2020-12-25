@@ -240,7 +240,10 @@ func (l *tomlLexer) lexRvalue() tomlLexStateFn {
 func (l *tomlLexer) lexLeftCurlyBrace() tomlLexStateFn {
 	l.next()
 	l.emit(tokenLeftCurlyBrace)
+<<<<<<< HEAD
 	l.brackets = append(l.brackets, '{')
+=======
+>>>>>>> Vendor update
 	return l.lexVoid
 }
 
@@ -330,6 +333,7 @@ func (l *tomlLexer) lexKey() tomlLexStateFn {
 		} else if r == '\n' {
 			return l.errorf("keys cannot contain new lines")
 		} else if isSpace(r) {
+<<<<<<< HEAD
 			str := " "
 			// skip trailing whitespace
 			l.next()
@@ -350,6 +354,9 @@ func (l *tomlLexer) lexKey() tomlLexStateFn {
 			}
 			growingString += str
 			continue
+=======
+			break
+>>>>>>> Vendor update
 		} else if r == '.' {
 			// skip
 		} else if !isValidBareChar(r) {

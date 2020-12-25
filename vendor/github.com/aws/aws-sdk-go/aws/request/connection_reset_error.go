@@ -9,8 +9,12 @@ func isErrConnectionReset(err error) bool {
 		return false
 	}
 
+<<<<<<< HEAD
 	if strings.Contains(err.Error(), "use of closed network connection") ||
 		strings.Contains(err.Error(), "connection reset") ||
+=======
+	if strings.Contains(err.Error(), "connection reset") ||
+>>>>>>> Vendor update
 		strings.Contains(err.Error(), "broken pipe") {
 		return true
 	}

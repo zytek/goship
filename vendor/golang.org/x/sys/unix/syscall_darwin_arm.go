@@ -38,10 +38,13 @@ func (msghdr *Msghdr) SetIovlen(length int) {
 	msghdr.Iovlen = int32(length)
 }
 
+<<<<<<< HEAD
 func (cmsg *Cmsghdr) SetLen(length int) {
 	cmsg.Len = uint32(length)
 }
 
+=======
+>>>>>>> Vendor update
 func Syscall9(num, a1, a2, a3, a4, a5, a6, a7, a8, a9 uintptr) (r1, r2 uintptr, err syscall.Errno) // sic
 
 // SYS___SYSCTL is used by syscall_bsd.go for all BSDs, but in modern versions
@@ -55,3 +58,10 @@ const SYS___SYSCTL = SYS_SYSCTL
 //sys	Lstat(path string, stat *Stat_t) (err error)
 //sys	Stat(path string, stat *Stat_t) (err error)
 //sys	Statfs(path string, stat *Statfs_t) (err error)
+<<<<<<< HEAD
+=======
+
+func Getdirentries(fd int, buf []byte, basep *uintptr) (n int, err error) {
+	return 0, ENOSYS
+}
+>>>>>>> Vendor update

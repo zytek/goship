@@ -129,6 +129,100 @@ const (
 	FADV_NOREUSE  = 0x7
 )
 
+<<<<<<< HEAD
+=======
+type RawSockaddrInet4 struct {
+	Family uint16
+	Port   uint16
+	Addr   [4]byte /* in_addr */
+	Zero   [8]uint8
+}
+
+type RawSockaddrInet6 struct {
+	Family   uint16
+	Port     uint16
+	Flowinfo uint32
+	Addr     [16]byte /* in6_addr */
+	Scope_id uint32
+}
+
+type RawSockaddrUnix struct {
+	Family uint16
+	Path   [108]int8
+}
+
+type RawSockaddrLinklayer struct {
+	Family   uint16
+	Protocol uint16
+	Ifindex  int32
+	Hatype   uint16
+	Pkttype  uint8
+	Halen    uint8
+	Addr     [8]uint8
+}
+
+type RawSockaddrNetlink struct {
+	Family uint16
+	Pad    uint16
+	Pid    uint32
+	Groups uint32
+}
+
+type RawSockaddrHCI struct {
+	Family  uint16
+	Dev     uint16
+	Channel uint16
+}
+
+type RawSockaddrL2 struct {
+	Family      uint16
+	Psm         uint16
+	Bdaddr      [6]uint8
+	Cid         uint16
+	Bdaddr_type uint8
+	_           [1]byte
+}
+
+type RawSockaddrRFCOMM struct {
+	Family  uint16
+	Bdaddr  [6]uint8
+	Channel uint8
+	_       [1]byte
+}
+
+type RawSockaddrCAN struct {
+	Family  uint16
+	Ifindex int32
+	Addr    [8]byte
+}
+
+type RawSockaddrALG struct {
+	Family uint16
+	Type   [14]uint8
+	Feat   uint32
+	Mask   uint32
+	Name   [64]uint8
+}
+
+type RawSockaddrVM struct {
+	Family    uint16
+	Reserved1 uint16
+	Port      uint32
+	Cid       uint32
+	Zero      [4]uint8
+}
+
+type RawSockaddrXDP struct {
+	Family         uint16
+	Flags          uint16
+	Ifindex        uint32
+	Queue_id       uint32
+	Shared_umem_fd uint32
+}
+
+type RawSockaddrPPPoX [0x1e]byte
+
+>>>>>>> Vendor update
 type RawSockaddr struct {
 	Family uint16
 	Data   [14]int8
@@ -161,6 +255,68 @@ type Cmsghdr struct {
 	Type  int32
 }
 
+<<<<<<< HEAD
+=======
+type Inet4Pktinfo struct {
+	Ifindex  int32
+	Spec_dst [4]byte /* in_addr */
+	Addr     [4]byte /* in_addr */
+}
+
+type Inet6Pktinfo struct {
+	Addr    [16]byte /* in6_addr */
+	Ifindex uint32
+}
+
+type IPv6MTUInfo struct {
+	Addr RawSockaddrInet6
+	Mtu  uint32
+}
+
+type ICMPv6Filter struct {
+	Data [8]uint32
+}
+
+type Ucred struct {
+	Pid int32
+	Uid uint32
+	Gid uint32
+}
+
+type TCPInfo struct {
+	State          uint8
+	Ca_state       uint8
+	Retransmits    uint8
+	Probes         uint8
+	Backoff        uint8
+	Options        uint8
+	Rto            uint32
+	Ato            uint32
+	Snd_mss        uint32
+	Rcv_mss        uint32
+	Unacked        uint32
+	Sacked         uint32
+	Lost           uint32
+	Retrans        uint32
+	Fackets        uint32
+	Last_data_sent uint32
+	Last_ack_sent  uint32
+	Last_data_recv uint32
+	Last_ack_recv  uint32
+	Pmtu           uint32
+	Rcv_ssthresh   uint32
+	Rtt            uint32
+	Rttvar         uint32
+	Snd_ssthresh   uint32
+	Snd_cwnd       uint32
+	Advmss         uint32
+	Reordering     uint32
+	Rcv_rtt        uint32
+	Rcv_space      uint32
+	Total_retrans  uint32
+}
+
+>>>>>>> Vendor update
 const (
 	SizeofIovec   = 0x10
 	SizeofMsghdr  = 0x38
@@ -171,6 +327,98 @@ const (
 	SizeofSockFprog = 0x10
 )
 
+<<<<<<< HEAD
+=======
+type NlMsghdr struct {
+	Len   uint32
+	Type  uint16
+	Flags uint16
+	Seq   uint32
+	Pid   uint32
+}
+
+type NlMsgerr struct {
+	Error int32
+	Msg   NlMsghdr
+}
+
+type RtGenmsg struct {
+	Family uint8
+}
+
+type NlAttr struct {
+	Len  uint16
+	Type uint16
+}
+
+type RtAttr struct {
+	Len  uint16
+	Type uint16
+}
+
+type IfInfomsg struct {
+	Family uint8
+	_      uint8
+	Type   uint16
+	Index  int32
+	Flags  uint32
+	Change uint32
+}
+
+type IfAddrmsg struct {
+	Family    uint8
+	Prefixlen uint8
+	Flags     uint8
+	Scope     uint8
+	Index     uint32
+}
+
+type RtMsg struct {
+	Family   uint8
+	Dst_len  uint8
+	Src_len  uint8
+	Tos      uint8
+	Table    uint8
+	Protocol uint8
+	Scope    uint8
+	Type     uint8
+	Flags    uint32
+}
+
+type RtNexthop struct {
+	Len     uint16
+	Flags   uint8
+	Hops    uint8
+	Ifindex int32
+}
+
+const (
+	SizeofSockFilter = 0x8
+	SizeofSockFprog  = 0x10
+)
+
+type SockFilter struct {
+	Code uint16
+	Jt   uint8
+	Jf   uint8
+	K    uint32
+}
+
+type SockFprog struct {
+	Len    uint16
+	Filter *SockFilter
+}
+
+type InotifyEvent struct {
+	Wd     int32
+	Mask   uint32
+	Cookie uint32
+	Len    uint32
+}
+
+const SizeofInotifyEvent = 0x10
+
+>>>>>>> Vendor update
 type PtraceRegs struct {
 	Psw                      PtracePsw
 	Gprs                     [16]uint64
@@ -247,7 +495,36 @@ type Sigset_t struct {
 	Val [16]uint64
 }
 
+<<<<<<< HEAD
 const _C__NSIG = 0x41
+=======
+type SignalfdSiginfo struct {
+	Signo     uint32
+	Errno     int32
+	Code      int32
+	Pid       uint32
+	Uid       uint32
+	Fd        int32
+	Tid       uint32
+	Band      uint32
+	Overrun   uint32
+	Trapno    uint32
+	Status    int32
+	Int       int32
+	Ptr       uint64
+	Utime     uint64
+	Stime     uint64
+	Addr      uint64
+	Addr_lsb  uint16
+	_         uint16
+	Syscall   int32
+	Call_addr uint64
+	Arch      uint32
+	_         [28]uint8
+}
+
+const PERF_IOC_FLAG_GROUP = 0x1
+>>>>>>> Vendor update
 
 type Termios struct {
 	Iflag  uint32
@@ -307,7 +584,10 @@ type Taskstats struct {
 	Freepages_delay_total     uint64
 	Thrashing_count           uint64
 	Thrashing_delay_total     uint64
+<<<<<<< HEAD
 	Ac_btime64                uint64
+=======
+>>>>>>> Vendor update
 }
 
 type cpuMask uint64
@@ -538,10 +818,17 @@ type CryptoReportLarval struct {
 	Type [64]int8
 }
 
+<<<<<<< HEAD
 type CryptoReportHash struct {
 	Type       [64]int8
 	Blocksize  uint32
 	Digestsize uint32
+=======
+type RTCWkAlrm struct {
+	Enabled uint8
+	Pending uint8
+	Time    RTCTime
+>>>>>>> Vendor update
 }
 
 type CryptoReportCipher struct {
@@ -551,6 +838,7 @@ type CryptoReportCipher struct {
 	Max_keysize uint32
 }
 
+<<<<<<< HEAD
 type CryptoReportBlkCipher struct {
 	Type        [64]int8
 	Geniv       [64]int8
@@ -558,6 +846,13 @@ type CryptoReportBlkCipher struct {
 	Min_keysize uint32
 	Max_keysize uint32
 	Ivsize      uint32
+=======
+type BlkpgIoctlArg struct {
+	Op      int32
+	Flags   int32
+	Datalen int32
+	Data    *byte
+>>>>>>> Vendor update
 }
 
 type CryptoReportAEAD struct {
@@ -618,7 +913,47 @@ type TIPCSIOCLNReq struct {
 	Linkname [68]int8
 }
 
+<<<<<<< HEAD
 type TIPCSIOCNodeIDReq struct {
 	Peer uint32
 	Id   [16]int8
+=======
+type ScmTimestamping struct {
+	Ts [3]Timespec
+}
+
+const (
+	SOF_TIMESTAMPING_TX_HARDWARE  = 0x1
+	SOF_TIMESTAMPING_TX_SOFTWARE  = 0x2
+	SOF_TIMESTAMPING_RX_HARDWARE  = 0x4
+	SOF_TIMESTAMPING_RX_SOFTWARE  = 0x8
+	SOF_TIMESTAMPING_SOFTWARE     = 0x10
+	SOF_TIMESTAMPING_SYS_HARDWARE = 0x20
+	SOF_TIMESTAMPING_RAW_HARDWARE = 0x40
+	SOF_TIMESTAMPING_OPT_ID       = 0x80
+	SOF_TIMESTAMPING_TX_SCHED     = 0x100
+	SOF_TIMESTAMPING_TX_ACK       = 0x200
+	SOF_TIMESTAMPING_OPT_CMSG     = 0x400
+	SOF_TIMESTAMPING_OPT_TSONLY   = 0x800
+	SOF_TIMESTAMPING_OPT_STATS    = 0x1000
+	SOF_TIMESTAMPING_OPT_PKTINFO  = 0x2000
+	SOF_TIMESTAMPING_OPT_TX_SWHW  = 0x4000
+
+	SOF_TIMESTAMPING_LAST = 0x4000
+	SOF_TIMESTAMPING_MASK = 0x7fff
+
+	SCM_TSTAMP_SND   = 0x0
+	SCM_TSTAMP_SCHED = 0x1
+	SCM_TSTAMP_ACK   = 0x2
+)
+
+type SockExtendedErr struct {
+	Errno  uint32
+	Origin uint8
+	Type   uint8
+	Code   uint8
+	Pad    uint8
+	Info   uint32
+	Data   uint32
+>>>>>>> Vendor update
 }

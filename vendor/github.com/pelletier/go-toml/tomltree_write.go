@@ -33,12 +33,16 @@ func encodeMultilineTomlString(value string, commented string) string {
 	adjacentQuoteCount := 0
 
 	b.WriteString(commented)
+<<<<<<< HEAD
 	for i, rr := range value {
 		if rr != '"' {
 			adjacentQuoteCount = 0
 		} else {
 			adjacentQuoteCount++
 		}
+=======
+	for _, rr := range value {
+>>>>>>> Vendor update
 		switch rr {
 		case '\b':
 			b.WriteString(`\b`)
@@ -103,6 +107,7 @@ func encodeTomlString(value string) string {
 	return b.String()
 }
 
+<<<<<<< HEAD
 func tomlTreeStringRepresentation(t *Tree, ord marshalOrder) (string, error) {
 	var orderedVals []sortNode
 	switch ord {
@@ -127,6 +132,9 @@ func tomlTreeStringRepresentation(t *Tree, ord marshalOrder) (string, error) {
 }
 
 func tomlValueStringRepresentation(v interface{}, commented string, indent string, ord marshalOrder, arraysOneElementPerLine bool) (string, error) {
+=======
+func tomlValueStringRepresentation(v interface{}, commented string, indent string, arraysOneElementPerLine bool) (string, error) {
+>>>>>>> Vendor update
 	// this interface check is added to dereference the change made in the writeTo function.
 	// That change was made to allow this function to see formatting options.
 	tv, ok := v.(*tomlValue)
@@ -163,7 +171,11 @@ func tomlValueStringRepresentation(v interface{}, commented string, indent strin
 		return "\"" + encodeTomlString(value) + "\"", nil
 	case []byte:
 		b, _ := v.([]byte)
+<<<<<<< HEAD
 		return tomlValueStringRepresentation(string(b), commented, indent, ord, arraysOneElementPerLine)
+=======
+		return tomlValueStringRepresentation(string(b), commented, indent, arraysOneElementPerLine)
+>>>>>>> Vendor update
 	case bool:
 		if value {
 			return "true", nil
@@ -177,8 +189,11 @@ func tomlValueStringRepresentation(v interface{}, commented string, indent strin
 		return value.String(), nil
 	case LocalTime:
 		return value.String(), nil
+<<<<<<< HEAD
 	case *Tree:
 		return tomlTreeStringRepresentation(value, ord)
+=======
+>>>>>>> Vendor update
 	case nil:
 		return "", nil
 	}
@@ -189,7 +204,11 @@ func tomlValueStringRepresentation(v interface{}, commented string, indent strin
 		var values []string
 		for i := 0; i < rv.Len(); i++ {
 			item := rv.Index(i).Interface()
+<<<<<<< HEAD
 			itemRepr, err := tomlValueStringRepresentation(item, commented, indent, ord, arraysOneElementPerLine)
+=======
+			itemRepr, err := tomlValueStringRepresentation(item, commented, indent, arraysOneElementPerLine)
+>>>>>>> Vendor update
 			if err != nil {
 				return "", err
 			}
@@ -307,10 +326,17 @@ func sortAlphabetical(t *Tree) (vals []sortNode) {
 }
 
 func (t *Tree) writeTo(w io.Writer, indent, keyspace string, bytesCount int64, arraysOneElementPerLine bool) (int64, error) {
+<<<<<<< HEAD
 	return t.writeToOrdered(w, indent, keyspace, bytesCount, arraysOneElementPerLine, OrderAlphabetical, "  ", false)
 }
 
 func (t *Tree) writeToOrdered(w io.Writer, indent, keyspace string, bytesCount int64, arraysOneElementPerLine bool, ord marshalOrder, indentString string, parentCommented bool) (int64, error) {
+=======
+	return t.writeToOrdered(w, indent, keyspace, bytesCount, arraysOneElementPerLine, OrderAlphabetical, false)
+}
+
+func (t *Tree) writeToOrdered(w io.Writer, indent, keyspace string, bytesCount int64, arraysOneElementPerLine bool, ord marshalOrder, parentCommented bool) (int64, error) {
+>>>>>>> Vendor update
 	var orderedVals []sortNode
 
 	switch ord {
@@ -326,7 +352,11 @@ func (t *Tree) writeToOrdered(w io.Writer, indent, keyspace string, bytesCount i
 			k := node.key
 			v := t.values[k]
 
+<<<<<<< HEAD
 			combinedKey := quoteKeyIfNeeded(k)
+=======
+			combinedKey := k
+>>>>>>> Vendor update
 			if keyspace != "" {
 				combinedKey = keyspace + "." + combinedKey
 			}
@@ -360,7 +390,11 @@ func (t *Tree) writeToOrdered(w io.Writer, indent, keyspace string, bytesCount i
 				if err != nil {
 					return bytesCount, err
 				}
+<<<<<<< HEAD
 				bytesCount, err = node.writeToOrdered(w, indent+indentString, combinedKey, bytesCount, arraysOneElementPerLine, ord, indentString, parentCommented || t.commented || tv.commented)
+=======
+				bytesCount, err = node.writeToOrdered(w, indent+"  ", combinedKey, bytesCount, arraysOneElementPerLine, ord, parentCommented || t.commented || tv.commented)
+>>>>>>> Vendor update
 				if err != nil {
 					return bytesCount, err
 				}
@@ -376,7 +410,11 @@ func (t *Tree) writeToOrdered(w io.Writer, indent, keyspace string, bytesCount i
 						return bytesCount, err
 					}
 
+<<<<<<< HEAD
 					bytesCount, err = subTree.writeToOrdered(w, indent+indentString, combinedKey, bytesCount, arraysOneElementPerLine, ord, indentString, parentCommented || t.commented || subTree.commented)
+=======
+					bytesCount, err = subTree.writeToOrdered(w, indent+"  ", combinedKey, bytesCount, arraysOneElementPerLine, ord, parentCommented || t.commented || subTree.commented)
+>>>>>>> Vendor update
 					if err != nil {
 						return bytesCount, err
 					}
@@ -393,7 +431,11 @@ func (t *Tree) writeToOrdered(w io.Writer, indent, keyspace string, bytesCount i
 			if parentCommented || t.commented || v.commented {
 				commented = "# "
 			}
+<<<<<<< HEAD
 			repr, err := tomlValueStringRepresentation(v, commented, indent, ord, arraysOneElementPerLine)
+=======
+			repr, err := tomlValueStringRepresentation(v, commented, indent, arraysOneElementPerLine)
+>>>>>>> Vendor update
 			if err != nil {
 				return bytesCount, err
 			}

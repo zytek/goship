@@ -348,6 +348,7 @@ const (
 	SYS_PWRITEV2               = 359
 	SYS_STATX                  = 360
 	SYS_IO_PGETEVENTS          = 361
+<<<<<<< HEAD
 	SYS_PKEY_MPROTECT          = 362
 	SYS_PKEY_ALLOC             = 363
 	SYS_PKEY_FREE              = 364
@@ -377,4 +378,6 @@ const (
 	SYS_OPENAT2                = 437
 	SYS_PIDFD_GETFD            = 438
 	SYS_FACCESSAT2             = 439
+=======
+>>>>>>> Vendor update
 )

@@ -105,26 +105,43 @@ dragonfly_amd64)
 freebsd_386)
 	mkerrors="$mkerrors -m32"
 	mksyscall="go run mksyscall.go -l32"
+<<<<<<< HEAD
 	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/11/sys/kern/syscalls.master'"
+=======
+	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/10/sys/kern/syscalls.master'"
+>>>>>>> Vendor update
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
 	;;
 freebsd_amd64)
 	mkerrors="$mkerrors -m64"
+<<<<<<< HEAD
 	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/11/sys/kern/syscalls.master'"
+=======
+	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/10/sys/kern/syscalls.master'"
+>>>>>>> Vendor update
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
 	;;
 freebsd_arm)
 	mkerrors="$mkerrors"
 	mksyscall="go run mksyscall.go -l32 -arm"
+<<<<<<< HEAD
 	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/11/sys/kern/syscalls.master'"
+=======
+	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/10/sys/kern/syscalls.master'"
+>>>>>>> Vendor update
 	# Let the type of C char be signed for making the bare syscall
 	# API consistent across platforms.
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs -- -fsigned-char"
 	;;
 freebsd_arm64)
 	mkerrors="$mkerrors -m64"
+<<<<<<< HEAD
 	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/11/sys/kern/syscalls.master'"
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs -- -fsigned-char"
+=======
+	mksysnum="go run mksysnum.go 'https://svn.freebsd.org/base/stable/10/sys/kern/syscalls.master'"
+	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
+>>>>>>> Vendor update
 	;;
 netbsd_386)
 	mkerrors="$mkerrors -m32"
@@ -155,20 +172,29 @@ netbsd_arm64)
 openbsd_386)
 	mkerrors="$mkerrors -m32"
 	mksyscall="go run mksyscall.go -l32 -openbsd"
+<<<<<<< HEAD
 	mksysctl="go run mksysctl_openbsd.go"
+=======
+	mksysctl="./mksysctl_openbsd.pl"
+>>>>>>> Vendor update
 	mksysnum="go run mksysnum.go 'https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/sys/kern/syscalls.master'"
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
 	;;
 openbsd_amd64)
 	mkerrors="$mkerrors -m64"
 	mksyscall="go run mksyscall.go -openbsd"
+<<<<<<< HEAD
 	mksysctl="go run mksysctl_openbsd.go"
+=======
+	mksysctl="./mksysctl_openbsd.pl"
+>>>>>>> Vendor update
 	mksysnum="go run mksysnum.go 'https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/sys/kern/syscalls.master'"
 	mktypes="GOARCH=$GOARCH go tool cgo -godefs"
 	;;
 openbsd_arm)
 	mkerrors="$mkerrors"
 	mksyscall="go run mksyscall.go -l32 -openbsd -arm"
+<<<<<<< HEAD
 	mksysctl="go run mksysctl_openbsd.go"
 	mksysnum="go run mksysnum.go 'https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/sys/kern/syscalls.master'"
 	# Let the type of C char be signed for making the bare syscall
@@ -179,6 +205,9 @@ openbsd_arm64)
 	mkerrors="$mkerrors -m64"
 	mksyscall="go run mksyscall.go -openbsd"
 	mksysctl="go run mksysctl_openbsd.go"
+=======
+	mksysctl="./mksysctl_openbsd.pl"
+>>>>>>> Vendor update
 	mksysnum="go run mksysnum.go 'https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/sys/kern/syscalls.master'"
 	# Let the type of C char be signed for making the bare syscall
 	# API consistent across platforms.
@@ -218,6 +247,7 @@ esac
 				echo "$mksyscall -tags $GOOS,$GOARCH $syscall_goos $GOOSARCH_in && gofmt -w zsyscall_$GOOSARCH.go && gofmt -w zsyscall_"$GOOSARCH"_gccgo.go && gofmt -w zsyscall_"$GOOSARCH"_gc.go " ;
 			elif [ "$GOOS" == "darwin" ]; then
 			        # pre-1.12, direct syscalls
+<<<<<<< HEAD
 			        echo "$mksyscall -tags $GOOS,$GOARCH,!go1.12 $syscall_goos syscall_darwin_${GOARCH}.1_11.go $GOOSARCH_in |gofmt >zsyscall_$GOOSARCH.1_11.go";
 			        # 1.12 and later, syscalls via libSystem
 				echo "$mksyscall -tags $GOOS,$GOARCH,go1.12 $syscall_goos $GOOSARCH_in |gofmt >zsyscall_$GOOSARCH.go";
@@ -228,6 +258,11 @@ esac
 			        echo "$mksyscall -illumos -tags illumos,$GOARCH syscall_illumos.go |gofmt > zsyscall_illumos_$GOARCH.go";
 			        # illumos implies solaris, so solaris code generation is also required
 				echo "$mksyscall -tags solaris,$GOARCH syscall_solaris.go syscall_solaris_$GOARCH.go |gofmt >zsyscall_solaris_$GOARCH.go";
+=======
+			        echo "$mksyscall -tags $GOOS,$GOARCH,!go1.12 $syscall_goos $GOOSARCH_in |gofmt >zsyscall_$GOOSARCH.1_11.go";
+			        # 1.12 and later, syscalls via libSystem
+				echo "$mksyscall -tags $GOOS,$GOARCH,go1.12 $syscall_goos $GOOSARCH_in |gofmt >zsyscall_$GOOSARCH.go";
+>>>>>>> Vendor update
 			else
 				echo "$mksyscall -tags $GOOS,$GOARCH $syscall_goos $GOOSARCH_in |gofmt >zsyscall_$GOOSARCH.go";
 			fi
@@ -235,6 +270,13 @@ esac
 	esac
 	if [ -n "$mksysctl" ]; then echo "$mksysctl |gofmt >$zsysctl"; fi
 	if [ -n "$mksysnum" ]; then echo "$mksysnum |gofmt >zsysnum_$GOOSARCH.go"; fi
+<<<<<<< HEAD
 	if [ -n "$mktypes" ]; then echo "$mktypes types_$GOOS.go | go run mkpost.go > ztypes_$GOOSARCH.go"; fi
 	if [ -n "$mkasm" ]; then echo "$mkasm $GOARCH"; fi
+=======
+	if [ -n "$mktypes" ]; then
+		echo "$mktypes types_$GOOS.go | go run mkpost.go > ztypes_$GOOSARCH.go";
+	if [ -n "$mkasm" ]; then echo "$mkasm $GOARCH"; fi
+	fi
+>>>>>>> Vendor update
 ) | $run

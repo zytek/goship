@@ -28,6 +28,7 @@ const (
 // compare test values.
 var now = time.Now
 
+<<<<<<< HEAD
 // TokenFetcher shuold return WebIdentity token bytes or an error
 type TokenFetcher interface {
 	FetchToken(credentials.Context) ([]byte, error)
@@ -46,10 +47,13 @@ func (f FetchTokenPath) FetchToken(ctx credentials.Context) ([]byte, error) {
 	return data, nil
 }
 
+=======
+>>>>>>> Vendor update
 // WebIdentityRoleProvider is used to retrieve credentials using
 // an OIDC token.
 type WebIdentityRoleProvider struct {
 	credentials.Expiry
+<<<<<<< HEAD
 	PolicyArns []*sts.PolicyDescriptorType
 
 	// Duration the STS credentials will be valid for. Truncated to seconds.
@@ -68,6 +72,13 @@ type WebIdentityRoleProvider struct {
 	client stsiface.STSAPI
 
 	tokenFetcher    TokenFetcher
+=======
+
+	client       stsiface.STSAPI
+	ExpiryWindow time.Duration
+
+	tokenFilePath   string
+>>>>>>> Vendor update
 	roleARN         string
 	roleSessionName string
 }
@@ -83,6 +94,7 @@ func NewWebIdentityCredentials(c client.ConfigProvider, roleARN, roleSessionName
 // NewWebIdentityRoleProvider will return a new WebIdentityRoleProvider with the
 // provided stsiface.STSAPI
 func NewWebIdentityRoleProvider(svc stsiface.STSAPI, roleARN, roleSessionName, path string) *WebIdentityRoleProvider {
+<<<<<<< HEAD
 	return NewWebIdentityRoleProviderWithToken(svc, roleARN, roleSessionName, FetchTokenPath(path))
 }
 
@@ -92,6 +104,11 @@ func NewWebIdentityRoleProviderWithToken(svc stsiface.STSAPI, roleARN, roleSessi
 	return &WebIdentityRoleProvider{
 		client:          svc,
 		tokenFetcher:    tokenFetcher,
+=======
+	return &WebIdentityRoleProvider{
+		client:          svc,
+		tokenFilePath:   path,
+>>>>>>> Vendor update
 		roleARN:         roleARN,
 		roleSessionName: roleSessionName,
 	}
@@ -108,9 +125,16 @@ func (p *WebIdentityRoleProvider) Retrieve() (credentials.Value, error) {
 // 'WebIdentityTokenFilePath' specified destination and if that is empty an
 // error will be returned.
 func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
+<<<<<<< HEAD
 	b, err := p.tokenFetcher.FetchToken(ctx)
 	if err != nil {
 		return credentials.Value{}, awserr.New(ErrCodeWebIdentity, "failed fetching WebIdentity token: ", err)
+=======
+	b, err := ioutil.ReadFile(p.tokenFilePath)
+	if err != nil {
+		errMsg := fmt.Sprintf("unable to read file at %s", p.tokenFilePath)
+		return credentials.Value{}, awserr.New(ErrCodeWebIdentity, errMsg, err)
+>>>>>>> Vendor update
 	}
 
 	sessionName := p.roleSessionName
@@ -119,6 +143,7 @@ func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (
 		// uses unix time in nanoseconds to uniquely identify sessions.
 		sessionName = strconv.FormatInt(now().UnixNano(), 10)
 	}
+<<<<<<< HEAD
 
 	var duration *int64
 	if p.Duration != 0 {
@@ -131,6 +156,12 @@ func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (
 		RoleSessionName:  &sessionName,
 		WebIdentityToken: aws.String(string(b)),
 		DurationSeconds:  duration,
+=======
+	req, resp := p.client.AssumeRoleWithWebIdentityRequest(&sts.AssumeRoleWithWebIdentityInput{
+		RoleArn:          &p.roleARN,
+		RoleSessionName:  &sessionName,
+		WebIdentityToken: aws.String(string(b)),
+>>>>>>> Vendor update
 	})
 
 	req.SetContext(ctx)

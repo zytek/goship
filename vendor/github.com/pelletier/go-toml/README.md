@@ -3,7 +3,11 @@
 Go library for the [TOML](https://github.com/mojombo/toml) format.
 
 This library supports TOML version
+<<<<<<< HEAD
 [v1.0.0-rc.1](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v1.0.0-rc.1.md)
+=======
+[v0.5.0](https://github.com/toml-lang/toml/blob/master/versions/en/toml-v0.5.0.md)
+>>>>>>> Vendor update
 
 [![GoDoc](https://godoc.org/github.com/pelletier/go-toml?status.svg)](http://godoc.org/github.com/pelletier/go-toml)
 [![license](https://img.shields.io/github/license/pelletier/go-toml.svg)](https://github.com/pelletier/go-toml/blob/master/LICENSE)
@@ -99,6 +103,30 @@ Go-toml provides two handy command line tools:
     go install github.com/pelletier/go-toml/cmd/tomljson
     tomljson --help
     ```
+  
+ * `jsontoml`: Reads a JSON file and outputs a TOML representation.
+ 
+    ```
+    go install github.com/pelletier/go-toml/cmd/jsontoml
+    jsontoml --help
+    ```
+
+### Docker image
+
+Those tools are also availble as a Docker image from
+[dockerhub](https://hub.docker.com/r/pelletier/go-toml). For example, to
+use `tomljson`:
+
+```
+docker run -v $PWD:/workdir pelletier/go-toml tomljson /workdir/example.toml
+```
+
+Only master (`latest`) and tagged versions are published to dockerhub. You
+can build your own image as usual:
+
+```
+docker build -t go-toml .
+```
 
  * `jsontoml`: Reads a JSON file and outputs a TOML representation.
 
