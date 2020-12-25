@@ -58,7 +58,6 @@ type Rlimit struct {
 type _Gid_t uint32
 
 type Stat_t struct {
-<<<<<<< HEAD
 	Dev     uint64
 	Mode    uint32
 	_       [4]byte
@@ -79,33 +78,10 @@ type Stat_t struct {
 	Gen     uint32
 	Spare   [2]uint32
 	_       [4]byte
-=======
-	Dev           uint64
-	Mode          uint32
-	Pad_cgo_0     [4]byte
-	Ino           uint64
-	Nlink         uint32
-	Uid           uint32
-	Gid           uint32
-	Pad_cgo_1     [4]byte
-	Rdev          uint64
-	Atimespec     Timespec
-	Mtimespec     Timespec
-	Ctimespec     Timespec
-	Birthtimespec Timespec
-	Size          int64
-	Blocks        int64
-	Blksize       uint32
-	Flags         uint32
-	Gen           uint32
-	Spare         [2]uint32
-	Pad_cgo_2     [4]byte
->>>>>>> Vendor update
 }
 
 type Statfs_t [0]byte
 
-<<<<<<< HEAD
 type Statvfs_t struct {
 	Flag        uint64
 	Bsize       uint64
@@ -134,8 +110,6 @@ type Statvfs_t struct {
 	_           [4]byte
 }
 
-=======
->>>>>>> Vendor update
 type Flock_t struct {
 	Start  int64
 	Len    int64
@@ -162,14 +136,11 @@ const (
 )
 
 const (
-<<<<<<< HEAD
 	ST_WAIT   = 0x1
 	ST_NOWAIT = 0x2
 )
 
 const (
-=======
->>>>>>> Vendor update
 	FADV_NORMAL     = 0x0
 	FADV_RANDOM     = 0x1
 	FADV_SEQUENTIAL = 0x2
@@ -480,10 +451,7 @@ type Ptmget struct {
 
 const (
 	AT_FDCWD            = -0x64
-<<<<<<< HEAD
 	AT_SYMLINK_FOLLOW   = 0x400
-=======
->>>>>>> Vendor update
 	AT_SYMLINK_NOFOLLOW = 0x200
 )
 

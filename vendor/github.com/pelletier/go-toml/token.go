@@ -1,13 +1,6 @@
 package toml
 
-<<<<<<< HEAD
 import "fmt"
-=======
-import (
-	"fmt"
-	"unicode"
-)
->>>>>>> Vendor update
 
 // Define tokens
 type tokenType int

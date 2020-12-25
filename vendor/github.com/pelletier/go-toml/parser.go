@@ -206,14 +206,11 @@ func (p *tomlParser) parseAssign() tomlParserStateFn {
 			strings.Join(tableKey, "."))
 	}
 
-<<<<<<< HEAD
 	if targetNode.inline {
 		p.raiseError(key, "could not add key or sub-table to exist inline table or its sub-table : %s",
 			strings.Join(tableKey, "."))
 	}
 
-=======
->>>>>>> Vendor update
 	// assign value to the found table
 	keyVal := parsedKey[len(parsedKey)-1]
 	localKey := []string{keyVal}

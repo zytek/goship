@@ -23,10 +23,7 @@ const (
 
 type tomlOpts struct {
 	name         string
-<<<<<<< HEAD
 	nameFromTag  bool
-=======
->>>>>>> Vendor update
 	comment      string
 	commented    bool
 	multiline    bool
@@ -73,12 +70,9 @@ const (
 
 var timeType = reflect.TypeOf(time.Time{})
 var marshalerType = reflect.TypeOf(new(Marshaler)).Elem()
-<<<<<<< HEAD
 var unmarshalerType = reflect.TypeOf(new(Unmarshaler)).Elem()
 var textMarshalerType = reflect.TypeOf(new(encoding.TextMarshaler)).Elem()
 var textUnmarshalerType = reflect.TypeOf(new(encoding.TextUnmarshaler)).Elem()
-=======
->>>>>>> Vendor update
 var localDateType = reflect.TypeOf(LocalDate{})
 var localTimeType = reflect.TypeOf(LocalTime{})
 var localDateTimeType = reflect.TypeOf(LocalDateTime{})
@@ -99,23 +93,16 @@ func isPrimitive(mtype reflect.Type) bool {
 	case reflect.String:
 		return true
 	case reflect.Struct:
-<<<<<<< HEAD
 		return isTimeType(mtype)
-=======
-		return mtype == timeType || mtype == localDateType || mtype == localDateTimeType || mtype == localTimeType || isCustomMarshaler(mtype)
->>>>>>> Vendor update
 	default:
 		return false
 	}
 }
 
-<<<<<<< HEAD
 func isTimeType(mtype reflect.Type) bool {
 	return mtype == timeType || mtype == localDateType || mtype == localDateTimeType || mtype == localTimeType
 }
 
-=======
->>>>>>> Vendor update
 // Check if the given marshal type maps to a Tree slice or array
 func isTreeSequence(mtype reflect.Type) bool {
 	switch mtype.Kind() {
@@ -128,7 +115,6 @@ func isTreeSequence(mtype reflect.Type) bool {
 	}
 }
 
-<<<<<<< HEAD
 // Check if the given marshal type maps to a slice or array of a custom marshaler type
 func isCustomMarshalerSequence(mtype reflect.Type) bool {
 	switch mtype.Kind() {
@@ -136,21 +122,11 @@ func isCustomMarshalerSequence(mtype reflect.Type) bool {
 		return isCustomMarshalerSequence(mtype.Elem())
 	case reflect.Slice, reflect.Array:
 		return isCustomMarshaler(mtype.Elem()) || isCustomMarshaler(reflect.New(mtype.Elem()).Type())
-=======
-// Check if the given marshal type maps to a non-Tree slice or array
-func isOtherSequence(mtype reflect.Type) bool {
-	switch mtype.Kind() {
-	case reflect.Ptr:
-		return isOtherSequence(mtype.Elem())
-	case reflect.Slice, reflect.Array:
-		return !isTreeSequence(mtype)
->>>>>>> Vendor update
 	default:
 		return false
 	}
 }
 
-<<<<<<< HEAD
 // Check if the given marshal type maps to a slice or array of a text marshaler type
 func isTextMarshalerSequence(mtype reflect.Type) bool {
 	switch mtype.Kind() {
@@ -175,8 +151,6 @@ func isOtherSequence(mtype reflect.Type) bool {
 	}
 }
 
-=======
->>>>>>> Vendor update
 // Check if the given marshal type maps to a Tree
 func isTree(mtype reflect.Type) bool {
 	switch mtype.Kind() {
@@ -279,23 +253,16 @@ type Encoder struct {
 	w io.Writer
 	encOpts
 	annotation
-<<<<<<< HEAD
 	line        int
 	col         int
 	order       marshalOrder
 	promoteAnon bool
 	indentation string
-=======
-	line  int
-	col   int
-	order marshalOrder
->>>>>>> Vendor update
 }
 
 // NewEncoder returns a new encoder that writes to w.
 func NewEncoder(w io.Writer) *Encoder {
 	return &Encoder{
-<<<<<<< HEAD
 		w:           w,
 		encOpts:     encOptsDefaults,
 		annotation:  annotationDefault,
@@ -303,14 +270,6 @@ func NewEncoder(w io.Writer) *Encoder {
 		col:         1,
 		order:       OrderAlphabetical,
 		indentation: "  ",
-=======
-		w:          w,
-		encOpts:    encOptsDefaults,
-		annotation: annotationDefault,
-		line:       0,
-		col:        1,
-		order:      OrderAlphabetical,
->>>>>>> Vendor update
 	}
 }
 
@@ -362,15 +321,12 @@ func (e *Encoder) Order(ord marshalOrder) *Encoder {
 	return e
 }
 
-<<<<<<< HEAD
 // Indentation allows to change indentation when marshalling.
 func (e *Encoder) Indentation(indent string) *Encoder {
 	e.indentation = indent
 	return e
 }
 
-=======
->>>>>>> Vendor update
 // SetTagName allows changing default tag "toml"
 func (e *Encoder) SetTagName(v string) *Encoder {
 	e.tag = v
@@ -395,7 +351,6 @@ func (e *Encoder) SetTagMultiline(v string) *Encoder {
 	return e
 }
 
-<<<<<<< HEAD
 // PromoteAnonymous allows to change how anonymous struct fields are marshaled.
 // Usually, they are marshaled as if the inner exported fields were fields in
 // the outer struct. However, if an anonymous struct field is given a name in
@@ -409,8 +364,6 @@ func (e *Encoder) PromoteAnonymous(promote bool) *Encoder {
 	return e
 }
 
-=======
->>>>>>> Vendor update
 func (e *Encoder) marshal(v interface{}) ([]byte, error) {
 	// Check if indentation is valid
 	for _, char := range e.indentation {
@@ -420,12 +373,9 @@ func (e *Encoder) marshal(v interface{}) ([]byte, error) {
 	}
 
 	mtype := reflect.TypeOf(v)
-<<<<<<< HEAD
 	if mtype == nil {
 		return []byte{}, errors.New("nil cannot be marshaled to TOML")
 	}
-=======
->>>>>>> Vendor update
 
 	switch mtype.Kind() {
 	case reflect.Struct, reflect.Map:
@@ -433,12 +383,9 @@ func (e *Encoder) marshal(v interface{}) ([]byte, error) {
 		if mtype.Elem().Kind() != reflect.Struct {
 			return []byte{}, errors.New("Only pointer to struct can be marshaled to TOML")
 		}
-<<<<<<< HEAD
 		if reflect.ValueOf(v).IsNil() {
 			return []byte{}, errors.New("nil pointer cannot be marshaled to TOML")
 		}
-=======
->>>>>>> Vendor update
 	default:
 		return []byte{}, errors.New("Only a struct or map can be marshaled to TOML")
 	}
@@ -456,11 +403,7 @@ func (e *Encoder) marshal(v interface{}) ([]byte, error) {
 	}
 
 	var buf bytes.Buffer
-<<<<<<< HEAD
 	_, err = t.writeToOrdered(&buf, "", "", 0, e.arraysOneElementPerLine, e.order, e.indentation, false)
-=======
-	_, err = t.writeToOrdered(&buf, "", "", 0, e.arraysOneElementPerLine, e.order, false)
->>>>>>> Vendor update
 
 	return buf.Bytes(), err
 }
@@ -490,7 +433,6 @@ func (e *Encoder) valueToTree(mtype reflect.Type, mval reflect.Value) (*Tree, er
 					if err != nil {
 						return nil, err
 					}
-<<<<<<< HEAD
 					if tree, ok := val.(*Tree); ok && mtypef.Anonymous && !opts.nameFromTag && !e.promoteAnon {
 						e.appendTree(tval, tree)
 					} else {
@@ -500,14 +442,6 @@ func (e *Encoder) valueToTree(mtype reflect.Type, mval reflect.Value) (*Tree, er
 							Multiline: opts.multiline,
 						}, val)
 					}
-=======
-
-					tval.SetWithOptions(opts.name, SetOptions{
-						Comment:   opts.comment,
-						Commented: opts.commented,
-						Multiline: opts.multiline,
-					}, val)
->>>>>>> Vendor update
 				}
 			}
 		}
@@ -541,11 +475,7 @@ func (e *Encoder) valueToTree(mtype reflect.Type, mval reflect.Value) (*Tree, er
 				return nil, err
 			}
 			if e.quoteMapKeys {
-<<<<<<< HEAD
 				keyStr, err := tomlValueStringRepresentation(key.String(), "", "", e.order, e.arraysOneElementPerLine)
-=======
-				keyStr, err := tomlValueStringRepresentation(key.String(), "", "", e.arraysOneElementPerLine)
->>>>>>> Vendor update
 				if err != nil {
 					return nil, err
 				}
@@ -573,9 +503,6 @@ func (e *Encoder) valueToTreeSlice(mtype reflect.Type, mval reflect.Value) ([]*T
 
 // Convert given marshal slice to slice of toml values
 func (e *Encoder) valueToOtherSlice(mtype reflect.Type, mval reflect.Value) (interface{}, error) {
-	if mtype.Elem().Kind() == reflect.Interface {
-		return nil, fmt.Errorf("marshal can't handle []interface{}")
-	}
 	tval := make([]interface{}, mval.Len(), mval.Len())
 	for i := 0; i < mval.Len(); i++ {
 		val, err := e.valueToToml(mtype.Elem(), mval.Index(i))
@@ -603,9 +530,6 @@ func (e *Encoder) valueToToml(mtype reflect.Type, mval reflect.Value) (interface
 	if mtype.Kind() == reflect.Interface {
 		return e.valueToToml(mval.Elem().Type(), mval.Elem())
 	}
-	if mtype.Kind() == reflect.Interface {
-		return e.valueToToml(mval.Elem().Type(), mval.Elem())
-	}
 	switch {
 	case isCustomMarshaler(mtype):
 		return callCustomMarshaler(mval)
@@ -613,13 +537,7 @@ func (e *Encoder) valueToToml(mtype reflect.Type, mval reflect.Value) (interface
 		return callTextMarshaler(mval)
 	case isTree(mtype):
 		return e.valueToTree(mtype, mval)
-<<<<<<< HEAD
 	case isOtherSequence(mtype), isCustomMarshalerSequence(mtype), isTextMarshalerSequence(mtype):
-=======
-	case isTreeSequence(mtype):
-		return e.valueToTreeSlice(mtype, mval)
-	case isOtherSequence(mtype):
->>>>>>> Vendor update
 		return e.valueToOtherSlice(mtype, mval)
 	case isTreeSequence(mtype):
 		return e.valueToTreeSlice(mtype, mval)
@@ -711,11 +629,8 @@ type Decoder struct {
 	tval *Tree
 	encOpts
 	tagName string
-<<<<<<< HEAD
 	strict  bool
 	visitor visitorState
-=======
->>>>>>> Vendor update
 }
 
 // NewDecoder returns a new decoder that reads from r.
@@ -746,7 +661,6 @@ func (d *Decoder) SetTagName(v string) *Decoder {
 	return d
 }
 
-<<<<<<< HEAD
 // Strict allows changing to strict decoding. Any fields that are found in the
 // input data and do not have a corresponding struct member cause an error.
 func (d *Decoder) Strict(strict bool) *Decoder {
@@ -773,31 +687,14 @@ func (d *Decoder) unmarshal(v interface{}) error {
 
 	if reflect.ValueOf(v).IsNil() {
 		return errors.New("nil pointer cannot be unmarshaled from TOML")
-=======
-func (d *Decoder) unmarshal(v interface{}) error {
-	mtype := reflect.TypeOf(v)
-	if mtype.Kind() != reflect.Ptr {
-		return errors.New("only a pointer to struct or map can be unmarshaled from TOML")
-	}
-
-	elem := mtype.Elem()
-
-	switch elem.Kind() {
-	case reflect.Struct, reflect.Map:
-	default:
-		return errors.New("only a pointer to struct or map can be unmarshaled from TOML")
->>>>>>> Vendor update
 	}
 
 	vv := reflect.ValueOf(v).Elem()
 
-<<<<<<< HEAD
 	if d.strict {
 		d.visitor = newVisitorState(d.tval)
 	}
 
-=======
->>>>>>> Vendor update
 	sval, err := d.valueFromTree(elem, d.tval, &vv)
 	if err != nil {
 		return err
@@ -857,7 +754,6 @@ func (d *Decoder) valueFromTree(mtype reflect.Type, tval *Tree, mval1 *reflect.V
 				found := false
 				if tval != nil {
 					for _, key := range keysToTry {
-<<<<<<< HEAD
 						exists := tval.HasPath([]string{key})
 						if !exists {
 							continue
@@ -918,55 +814,6 @@ func (d *Decoder) valueFromTree(mtype reflect.Type, tval *Tree, mval1 *reflect.V
 						return mvalf, err
 					}
 					mvalf.Set(reflect.ValueOf(val).Convert(mvalf.Type()))
-=======
-						exists := tval.Has(key)
-						if !exists {
-							continue
-						}
-						val := tval.Get(key)
-						fval := mval.Field(i)
-						mvalf, err := d.valueFromToml(mtypef.Type, val, &fval)
-						if err != nil {
-							return mval, formatError(err, tval.GetPosition(key))
-						}
-						mval.Field(i).Set(mvalf)
-						found = true
-						break
-					}
-				}
-
-				if !found && opts.defaultValue != "" {
-					mvalf := mval.Field(i)
-					var val interface{}
-					var err error
-					switch mvalf.Kind() {
-					case reflect.Bool:
-						val, err = strconv.ParseBool(opts.defaultValue)
-						if err != nil {
-							return mval.Field(i), err
-						}
-					case reflect.Int:
-						val, err = strconv.Atoi(opts.defaultValue)
-						if err != nil {
-							return mval.Field(i), err
-						}
-					case reflect.String:
-						val = opts.defaultValue
-					case reflect.Int64:
-						val, err = strconv.ParseInt(opts.defaultValue, 10, 64)
-						if err != nil {
-							return mval.Field(i), err
-						}
-					case reflect.Float64:
-						val, err = strconv.ParseFloat(opts.defaultValue, 64)
-						if err != nil {
-							return mval.Field(i), err
-						}
-					default:
-						return mval.Field(i), fmt.Errorf("unsuported field type for default option")
-					}
-					mval.Field(i).Set(reflect.ValueOf(val))
->>>>>>> Vendor update
 				}
 
 				// save the old behavior above and try to check structs
@@ -975,12 +822,8 @@ func (d *Decoder) valueFromTree(mtype reflect.Type, tval *Tree, mval1 *reflect.V
 					if !mtypef.Anonymous {
 						tmpTval = nil
 					}
-<<<<<<< HEAD
 					fval := mval.Field(i)
 					v, err := d.valueFromTree(mtypef.Type, tmpTval, &fval)
-=======
-					v, err := d.valueFromTree(mtypef.Type, tmpTval, nil)
->>>>>>> Vendor update
 					if err != nil {
 						return v, err
 					}
@@ -999,10 +842,7 @@ func (d *Decoder) valueFromTree(mtype reflect.Type, tval *Tree, mval1 *reflect.V
 				return mval, formatError(err, tval.GetPositionPath([]string{key}))
 			}
 			mval.SetMapIndex(reflect.ValueOf(key).Convert(mtype.Key()), mvalf)
-<<<<<<< HEAD
 			d.visitor.pop()
-=======
->>>>>>> Vendor update
 		}
 	}
 	return mval, nil
@@ -1016,10 +856,7 @@ func (d *Decoder) valueFromTreeSlice(mtype reflect.Type, tval []*Tree) (reflect.
 	}
 
 	for i := 0; i < len(tval); i++ {
-<<<<<<< HEAD
 		d.visitor.push(strconv.Itoa(i))
-=======
->>>>>>> Vendor update
 		val, err := d.valueFromTree(mtype.Elem(), tval[i], nil)
 		if err != nil {
 			return mval, err
@@ -1039,7 +876,6 @@ func (d *Decoder) valueFromOtherSlice(mtype reflect.Type, tval []interface{}) (r
 
 	for i := 0; i < len(tval); i++ {
 		val, err := d.valueFromToml(mtype.Elem(), tval[i], nil)
-<<<<<<< HEAD
 		if err != nil {
 			return mval, err
 		}
@@ -1060,8 +896,6 @@ func (d *Decoder) valueFromOtherSliceI(mtype reflect.Type, tval interface{}) (re
 
 	for i := 0; i < length; i++ {
 		val, err := d.valueFromToml(mtype.Elem(), val.Index(i).Interface(), nil)
-=======
->>>>>>> Vendor update
 		if err != nil {
 			return mval, err
 		}
@@ -1070,7 +904,6 @@ func (d *Decoder) valueFromOtherSliceI(mtype reflect.Type, tval interface{}) (re
 	return mval, nil
 }
 
-<<<<<<< HEAD
 // Create a new slice or a new array with specified length
 func makeSliceOrArray(mtype reflect.Type, tLength int) (reflect.Value, error) {
 	var mval reflect.Value
@@ -1086,8 +919,6 @@ func makeSliceOrArray(mtype reflect.Type, tLength int) (reflect.Value, error) {
 	return mval, nil
 }
 
-=======
->>>>>>> Vendor update
 // Convert toml value to marshal value, using marshal type. When mval1 is non-nil
 // and the given type is a struct value, merge fields into it.
 func (d *Decoder) valueFromToml(mtype reflect.Type, tval interface{}, mval1 *reflect.Value) (reflect.Value, error) {
@@ -1129,10 +960,7 @@ func (d *Decoder) valueFromToml(mtype reflect.Type, tval interface{}, mval1 *ref
 		}
 		return reflect.ValueOf(nil), fmt.Errorf("Can't convert %v(%T) to trees", tval, tval)
 	case []interface{}:
-<<<<<<< HEAD
 		d.visitor.visit()
-=======
->>>>>>> Vendor update
 		if isOtherSequence(mtype) {
 			return d.valueFromOtherSlice(mtype, t)
 		}
@@ -1205,17 +1033,10 @@ func (d *Decoder) valueFromToml(mtype reflect.Type, tval interface{}, mval1 *ref
 				}
 				return reflect.ValueOf(d), nil
 			}
-<<<<<<< HEAD
 			if !val.Type().ConvertibleTo(mtype) || val.Kind() == reflect.Float64 {
 				return reflect.ValueOf(nil), fmt.Errorf("Can't convert %v(%T) to %v", tval, tval, mtype.String())
 			}
 			if reflect.Indirect(reflect.New(mtype)).OverflowInt(val.Convert(reflect.TypeOf(int64(0))).Int()) {
-=======
-			if !val.Type().ConvertibleTo(mtype) {
-				return reflect.ValueOf(nil), fmt.Errorf("Can't convert %v(%T) to %v", tval, tval, mtype.String())
-			}
-			if reflect.Indirect(reflect.New(mtype)).OverflowInt(val.Convert(mtype).Int()) {
->>>>>>> Vendor update
 				return reflect.ValueOf(nil), fmt.Errorf("%v(%T) would overflow %v", tval, tval, mtype.String())
 			}
 
@@ -1229,11 +1050,7 @@ func (d *Decoder) valueFromToml(mtype reflect.Type, tval interface{}, mval1 *ref
 			if val.Convert(reflect.TypeOf(int(1))).Int() < 0 {
 				return reflect.ValueOf(nil), fmt.Errorf("%v(%T) is negative so does not fit in %v", tval, tval, mtype.String())
 			}
-<<<<<<< HEAD
 			if reflect.Indirect(reflect.New(mtype)).OverflowUint(val.Convert(reflect.TypeOf(uint64(0))).Uint()) {
-=======
-			if reflect.Indirect(reflect.New(mtype)).OverflowUint(uint64(val.Convert(mtype).Uint())) {
->>>>>>> Vendor update
 				return reflect.ValueOf(nil), fmt.Errorf("%v(%T) would overflow %v", tval, tval, mtype.String())
 			}
 
@@ -1243,11 +1060,7 @@ func (d *Decoder) valueFromToml(mtype reflect.Type, tval interface{}, mval1 *ref
 			if !val.Type().ConvertibleTo(mtype) || val.Kind() == reflect.Int64 {
 				return reflect.ValueOf(nil), fmt.Errorf("Can't convert %v(%T) to %v", tval, tval, mtype.String())
 			}
-<<<<<<< HEAD
 			if reflect.Indirect(reflect.New(mtype)).OverflowFloat(val.Convert(reflect.TypeOf(float64(0))).Float()) {
-=======
-			if reflect.Indirect(reflect.New(mtype)).OverflowFloat(val.Convert(mtype).Float()) {
->>>>>>> Vendor update
 				return reflect.ValueOf(nil), fmt.Errorf("%v(%T) would overflow %v", tval, tval, mtype.String())
 			}
 
@@ -1259,14 +1072,11 @@ func (d *Decoder) valueFromToml(mtype reflect.Type, tval interface{}, mval1 *ref
 				ival := mval1.Elem()
 				return d.valueFromToml(mval1.Elem().Type(), t, &ival)
 			}
-<<<<<<< HEAD
 		case reflect.Slice, reflect.Array:
 			if isOtherSequence(mtype) && isOtherSequence(reflect.TypeOf(t)) {
 				return d.valueFromOtherSliceI(mtype, t)
 			}
 			return reflect.ValueOf(nil), fmt.Errorf("Can't convert %v(%T) to %v(%v)", tval, tval, mtype, mtype.Kind())
-=======
->>>>>>> Vendor update
 		default:
 			return reflect.ValueOf(nil), fmt.Errorf("Can't convert %v(%T) to %v(%v)", tval, tval, mtype, mtype.Kind())
 		}
@@ -1290,15 +1100,12 @@ func (d *Decoder) unwrapPointer(mtype reflect.Type, tval interface{}, mval1 *ref
 	return mval, nil
 }
 
-<<<<<<< HEAD
 func (d *Decoder) unmarshalText(tval interface{}, mval reflect.Value) error {
 	var buf bytes.Buffer
 	fmt.Fprint(&buf, tval)
 	return callTextUnmarshaler(mval, buf.Bytes())
 }
 
-=======
->>>>>>> Vendor update
 func tomlOptions(vf reflect.StructField, an annotation) tomlOpts {
 	tag := vf.Tag.Get(an.tag)
 	parse := strings.Split(tag, ",")
@@ -1311,10 +1118,7 @@ func tomlOptions(vf reflect.StructField, an annotation) tomlOpts {
 	defaultValue := vf.Tag.Get(tagDefault)
 	result := tomlOpts{
 		name:         vf.Name,
-<<<<<<< HEAD
 		nameFromTag:  false,
-=======
->>>>>>> Vendor update
 		comment:      comment,
 		commented:    commented,
 		multiline:    multiline,

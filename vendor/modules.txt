@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # github.com/aws/aws-sdk-go v1.34.7
-=======
-# github.com/aws/aws-sdk-go v1.30.4
->>>>>>> Vendor update
 ## explicit
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/awserr
@@ -34,26 +30,17 @@ github.com/aws/aws-sdk-go/internal/sync/singleflight
 github.com/aws/aws-sdk-go/private/protocol
 github.com/aws/aws-sdk-go/private/protocol/ec2query
 github.com/aws/aws-sdk-go/private/protocol/json/jsonutil
-<<<<<<< HEAD
-=======
-github.com/aws/aws-sdk-go/private/protocol/jsonrpc
->>>>>>> Vendor update
 github.com/aws/aws-sdk-go/private/protocol/query
 github.com/aws/aws-sdk-go/private/protocol/query/queryutil
 github.com/aws/aws-sdk-go/private/protocol/rest
 github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil
 github.com/aws/aws-sdk-go/service/ec2
-github.com/aws/aws-sdk-go/service/ec2instanceconnect
 github.com/aws/aws-sdk-go/service/sts
 github.com/aws/aws-sdk-go/service/sts/stsiface
-<<<<<<< HEAD
 # github.com/coreos/go-etcd v2.0.0+incompatible
 ## explicit
 # github.com/fsnotify/fsnotify v1.4.9
 ## explicit
-=======
-# github.com/fsnotify/fsnotify v1.4.7
->>>>>>> Vendor update
 github.com/fsnotify/fsnotify
 # github.com/google/go-github v17.0.0+incompatible
 ## explicit
@@ -78,10 +65,6 @@ github.com/hashicorp/hcl/json/token
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
 # github.com/jmespath/go-jmespath v0.3.0
-<<<<<<< HEAD
-=======
-## explicit
->>>>>>> Vendor update
 github.com/jmespath/go-jmespath
 # github.com/magiconair/properties v1.8.1
 github.com/magiconair/properties
@@ -91,11 +74,7 @@ github.com/mitchellh/go-homedir
 # github.com/mitchellh/mapstructure v1.3.3
 ## explicit
 github.com/mitchellh/mapstructure
-<<<<<<< HEAD
 # github.com/pelletier/go-toml v1.8.0
-=======
-# github.com/pelletier/go-toml v1.7.0
->>>>>>> Vendor update
 ## explicit
 github.com/pelletier/go-toml
 # github.com/spf13/afero v1.3.4
@@ -111,11 +90,7 @@ github.com/spf13/cobra
 # github.com/spf13/jwalterweatherman v1.1.0
 ## explicit
 github.com/spf13/jwalterweatherman
-<<<<<<< HEAD
 # github.com/spf13/pflag v1.0.5
-=======
-# github.com/spf13/pflag v1.0.3
->>>>>>> Vendor update
 ## explicit
 github.com/spf13/pflag
 # github.com/spf13/viper v1.7.1
@@ -129,7 +104,6 @@ github.com/tcnksm/go-input
 # github.com/tcnksm/go-latest v0.0.0-20170313132115-e3007ae9052e
 ## explicit
 github.com/tcnksm/go-latest
-<<<<<<< HEAD
 # github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8
 ## explicit
 # golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
@@ -140,21 +114,10 @@ golang.org/x/crypto/ssh/terminal
 golang.org/x/net/html
 golang.org/x/net/html/atom
 # golang.org/x/sys v0.0.0-20200819091447-39769834ee22
-=======
-# golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
-## explicit
-golang.org/x/crypto/ssh/terminal
-# golang.org/x/net v0.0.0-20200202094626-16171245cfb2
-## explicit
-golang.org/x/net/html
-golang.org/x/net/html/atom
-# golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a
->>>>>>> Vendor update
 ## explicit
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-<<<<<<< HEAD
 # golang.org/x/text v0.3.3
 golang.org/x/text/transform
 golang.org/x/text/unicode/norm
@@ -162,12 +125,5 @@ golang.org/x/text/unicode/norm
 ## explicit
 gopkg.in/ini.v1
 # gopkg.in/yaml.v2 v2.3.0
-=======
-# golang.org/x/text v0.3.0
-## explicit
-golang.org/x/text/transform
-golang.org/x/text/unicode/norm
-# gopkg.in/yaml.v2 v2.2.8
->>>>>>> Vendor update
 ## explicit
 gopkg.in/yaml.v2

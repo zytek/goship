@@ -6,10 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-<<<<<<< HEAD
 	"math/big"
-=======
->>>>>>> Vendor update
 	"reflect"
 	"strings"
 	"time"
@@ -19,11 +16,8 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
-<<<<<<< HEAD
 var millisecondsFloat = new(big.Float).SetInt64(1e3)
 
-=======
->>>>>>> Vendor update
 // UnmarshalJSONError unmarshal's the reader's JSON document into the passed in
 // type. The value to unmarshal the json document into must be a pointer to the
 // type.
@@ -48,13 +42,9 @@ func UnmarshalJSONError(v interface{}, stream io.Reader) error {
 func UnmarshalJSON(v interface{}, stream io.Reader) error {
 	var out interface{}
 
-<<<<<<< HEAD
 	decoder := json.NewDecoder(stream)
 	decoder.UseNumber()
 	err := decoder.Decode(&out)
-=======
-	err := json.NewDecoder(stream).Decode(&out)
->>>>>>> Vendor update
 	if err == io.EOF {
 		return nil
 	} else if err != nil {
@@ -69,13 +59,9 @@ func UnmarshalJSON(v interface{}, stream io.Reader) error {
 func UnmarshalJSONCaseInsensitive(v interface{}, stream io.Reader) error {
 	var out interface{}
 
-<<<<<<< HEAD
 	decoder := json.NewDecoder(stream)
 	decoder.UseNumber()
 	err := decoder.Decode(&out)
-=======
-	err := json.NewDecoder(stream).Decode(&out)
->>>>>>> Vendor update
 	if err == io.EOF {
 		return nil
 	} else if err != nil {
@@ -275,7 +261,6 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 		default:
 			return fmt.Errorf("unsupported value: %v (%s)", value.Interface(), value.Type())
 		}
-<<<<<<< HEAD
 	case json.Number:
 		switch value.Interface().(type) {
 		case *int64:
@@ -301,18 +286,6 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 			float = float.Mul(float, millisecondsFloat)
 			ms, _ := float.Int64()
 			t := time.Unix(0, ms*1e6).UTC()
-=======
-	case float64:
-		switch value.Interface().(type) {
-		case *int64:
-			di := int64(d)
-			value.Set(reflect.ValueOf(&di))
-		case *float64:
-			value.Set(reflect.ValueOf(&d))
-		case *time.Time:
-			// Time unmarshaled from a float64 can only be epoch seconds
-			t := time.Unix(int64(d), 0).UTC()
->>>>>>> Vendor update
 			value.Set(reflect.ValueOf(&t))
 		default:
 			return fmt.Errorf("unsupported value: %v (%s)", value.Interface(), value.Type())

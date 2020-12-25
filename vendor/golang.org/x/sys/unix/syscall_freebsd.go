@@ -503,7 +503,6 @@ func Sendfile(outfd int, infd int, offset *int64, count int) (written int, err e
 	return sendfile(outfd, infd, offset, count)
 }
 
-<<<<<<< HEAD
 //sys	ptrace(request int, pid int, addr uintptr, data int) (err error)
 
 func PtraceAttach(pid int) (err error) {
@@ -558,8 +557,6 @@ func PtraceSingleStep(pid int) (err error) {
 	return ptrace(PTRACE_SINGLESTEP, pid, 1, 0)
 }
 
-=======
->>>>>>> Vendor update
 /*
  * Exposed directly
  */

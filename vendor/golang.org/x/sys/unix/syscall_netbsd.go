@@ -232,7 +232,6 @@ func Sendfile(outfd int, infd int, offset *int64, count int) (written int, err e
 	return sendfile(outfd, infd, offset, count)
 }
 
-<<<<<<< HEAD
 func Fstatvfs(fd int, buf *Statvfs_t) (err error) {
 	return Fstatvfs1(fd, buf, ST_WAIT)
 }
@@ -241,8 +240,6 @@ func Statvfs(path string, buf *Statvfs_t) (err error) {
 	return Statvfs1(path, buf, ST_WAIT)
 }
 
-=======
->>>>>>> Vendor update
 /*
  * Exposed directly
  */

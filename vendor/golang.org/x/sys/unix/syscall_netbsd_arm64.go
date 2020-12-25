@@ -28,13 +28,10 @@ func (msghdr *Msghdr) SetControllen(length int) {
 	msghdr.Controllen = uint32(length)
 }
 
-<<<<<<< HEAD
 func (msghdr *Msghdr) SetIovlen(length int) {
 	msghdr.Iovlen = int32(length)
 }
 
-=======
->>>>>>> Vendor update
 func (cmsg *Cmsghdr) SetLen(length int) {
 	cmsg.Len = uint32(length)
 }

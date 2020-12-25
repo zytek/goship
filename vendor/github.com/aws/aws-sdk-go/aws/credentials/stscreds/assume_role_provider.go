@@ -314,10 +314,7 @@ func (p *AssumeRoleProvider) RetrieveWithContext(ctx credentials.Context) (crede
 		RoleSessionName:   aws.String(p.RoleSessionName),
 		ExternalId:        p.ExternalID,
 		Tags:              p.Tags,
-<<<<<<< HEAD
 		PolicyArns:        p.PolicyArns,
-=======
->>>>>>> Vendor update
 		TransitiveTagKeys: p.TransitiveTagKeys,
 	}
 	if p.Policy != nil {
