@@ -82,9 +82,9 @@ func (i *Ec2Instance) RenderShortOutput() string {
 	var tpl bytes.Buffer
 
 	t := ParseTemplate(i.ShortOutputTemplate)
-	//	fmt.Print("%v",i.NativeObject)
-	err := t.Execute(&tpl, i.NativeObject)
+	err := t.Execute(&tpl, i)
 	if err != nil {
+		fmt.Println(err)
 		panic("ERROR WHILE PARSING TEMPLATE")
 	}
 
@@ -95,8 +95,9 @@ func (i *Ec2Instance) RenderShortOutput() string {
 func (i *Ec2Instance) RenderLongOutput() string {
 	var tpl bytes.Buffer
 	t := ParseTemplate(i.LongOutputTemplate)
-	err := t.Execute(&tpl, i.NativeObject)
+	err := t.Execute(&tpl, i)
 	if err != nil {
+		fmt.Println(err)
 		panic("ERROR WHILE PARSING TEMPLATE")
 	}
 

@@ -16,7 +16,7 @@ func ChooseFromList(resourcesList []resources.Resource) (resources.Resource, err
 		return resourcesList[0], nil
 	} else if len(resourcesList) > 1 {
 		for i, r := range resourcesList {
-			fmt.Printf("%d. ", i+1)
+			fmt.Printf("%3d ", i+1)
 			fmt.Print(r.RenderShortOutput())
 		}
 

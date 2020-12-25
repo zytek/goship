@@ -1,21 +1,22 @@
 package resources
 
 // DefaultShortOutputTemplate defines default template for the list output
-var DefaultShortOutputTemplate = "{{range .Tags}}{{if eq (.Key | String) \"Name\"}}{{.Value | String | printf \"%-60s\"}}{{end}}{{end}}   {{range .Tags}}{{if eq (.Key | String) \"environment\"}}{{.Value | String | printf \"%-10s\"}}{{end}}{{end}}   {{range .Tags}}{{if eq (.Key | String) \"project\"}}{{.Value | String | printf \"%-10s\"}}{{end}}{{end}} {{.Placement.AvailabilityZone}}    {{.PrivateIpAddress| String | printf \"%-20s\"}} {{.PublicIpAddress| String |printf \"%-20s\"}}\n"
+var DefaultShortOutputTemplate = "{{range .NativeObject.Tags}}{{if eq (.Key | String) \"Name\"}}{{.Value | String | printf \"%-33s\"}}{{end}}{{end}}   {{range .NativeObject.Tags}}{{if eq (.Key | String) \"environment\"}}{{.Value | String | printf \"%-10s\"}}{{end}}{{end}} {{.NativeObject.Placement.AvailabilityZone}}  {{.NativeObject.PrivateIpAddress| String | printf \"%-16s\"}} {{.NativeObject.PublicIpAddress| String |printf \"%-16s\"}}{{.ProfileName | String |printf \"%-20s\"}}\n"
 
 // DefaultLongOutputTemplate defines default template for the detailed output
 var DefaultLongOutputTemplate = `
-{{range .Tags}}{{if eq (.Key | String) "Name"}}{{.Value}}{{end}}{{end}}
-  ami_id              {{.ImageId}}
-  az                  {{.Placement.AvailabilityZone}}
-  dns_name            {{.PublicDnsName}}
-  id                  {{.InstanceId}}
-  instance_type       {{.InstanceType}}
-  key_name            {{.KeyName}}
-  private_dns_name    {{.PrivateDnsName}}
-  private_ip          {{.PrivateIpAddress}}
-  public_ip           {{.PublicIpAddress}}
+{{range .NativeObject.Tags}}{{if eq (.Key | String) "Name"}}{{.Value}}{{end}}{{end}}
+  profile             {.ProfileName}
+  ami_id              {.NativeObject.ImageId}}
+  az                  {.NativeObject.Placement.AvailabilityZone}}
+  dns_name            {.NativeObject.PublicDnsName}}
+  id                  {.NativeObject.InstanceId}}
+  instance_type       {.NativeObject.InstanceType}}
+  key_name            {.NativeObject.KeyName}}
+  private_dns_name    {.NativeObject.PrivateDnsName}}
+  private_ip          {.NativeObject.PrivateIpAddress}}
+  public_ip           {.NativeObject.PublicIpAddress}}
   tags
-    {{range .Tags}}{{.Key | String | printf "%-10s"}}        {{.Value}}
+    {{range .NativeObject.Tags}}{{.Key | String | printf "%-10s"}}        {{.Value}}
     {{end}}
 `
