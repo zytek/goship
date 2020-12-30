@@ -1,15 +1,24 @@
----
-#username: DefaultUser
+#use_ec2_connect: true
+#ec2_connect_key_path: /Users/zytek/.ssh/ec2_instance_connect_key.pub
+#username: zytek
 #use_private_network: true
-#use_dns: true
+#use_dns: false
 #cache_directory: /tmp
 #cache_file_prefix: goship_cache_
 #cache_validity: 300
-
+#verbose: false
+#ssh_binary: /usr/bin/ssh
+#ssh_extra_params: []
+#scp_binary: /usr/bin/scp
+#scp_extra_params: []
+#preinit_hook: aws-mfa --profile identity
+#
 #providers:
 #    aws.ec2:
-#        - profile: production
-#          regions: [us-east-1]
-#          preinit_hook: /usr/bin/saml2aws ...
-#        - profile: sandbox
-#          regions: [eu-west-1]
+#      - profile: production
+#        preinit_hook: saml2aws ..
+#        regions:
+#        - us-east-1
+#      - profile: services
+#        regions:
+#        - us-east-1

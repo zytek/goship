@@ -17,7 +17,8 @@ type Config struct {
 	ScpBinary      string   `mapstructure:"scp_binary" yaml:"scp_binary"`
 	ScpExtraParams []string `mapstructure:"scp_extra_params" yaml:"scp_extra_params"`
 
-	Providers map[string]interface{} `yaml:"providers,omitempty"`
+	Providers   map[string]interface{} `yaml:"providers,omitempty"`
+	PreinitHook string                 `mapstructure:"preinit_hook" yaml:"preinit_hook"`
 }
 
 // GlobalConfig holds globally accessible config var

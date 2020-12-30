@@ -62,6 +62,7 @@ func init() {
 	RootCmd.PersistentFlags().BoolP("verbose", "v", false, "Be more verbose")
 	RootCmd.PersistentFlags().BoolP("use-private-network", "p", false, "Use private resource identification")
 	RootCmd.PersistentFlags().BoolP("use-dns", "d", false, "Use DNS instead of Resource IP")
+	RootCmd.PersistentFlags().StringP("preinit-hook", "", "", "Command to run before initializing providers (aws-mfa, saml2aws..)")
 
 	RootCmd.PersistentFlags().BoolVarP(&forceUncache, "uncache", "", false, "Drop any existing cache before obtaining resource list")
 	RootCmd.PersistentFlags().StringP("cache-directory", "", "/tmp", "Cache directory (default is /tmp)")
@@ -74,6 +75,7 @@ func init() {
 	_ = viper.BindPFlag("ssh-command", RootCmd.PersistentFlags().Lookup("ssh-command"))
 	_ = viper.BindPFlag("use_private_network", RootCmd.PersistentFlags().Lookup("use-private-network"))
 	_ = viper.BindPFlag("use_dns", RootCmd.PersistentFlags().Lookup("use-dns"))
+	_ = viper.BindPFlag("preinit_hook", RootCmd.PersistentFlags().Lookup("preinit-hook"))
 	_ = viper.BindPFlag("cache_directory", RootCmd.PersistentFlags().Lookup("cache-directory"))
 	_ = viper.BindPFlag("cache_file_prefix", RootCmd.PersistentFlags().Lookup("cache-file-prefix"))
 	_ = viper.BindPFlag("cache_validity", RootCmd.PersistentFlags().Lookup("cache-validity"))
