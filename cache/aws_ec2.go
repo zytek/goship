@@ -3,6 +3,7 @@ package cache
 import (
 	"encoding/gob"
 	"fmt"
+	"github.com/zendesk/goship/version"
 	"os"
 	"path"
 	"time"
@@ -30,7 +31,7 @@ func NewAwsEc2Cache(provider providers.AwsEc2Provider) *AwsEc2Cache {
 }
 
 func (g *AwsEc2Cache) cacheFilePath() string {
-	return fmt.Sprintf("%s%s_%s_%s", path.Join(config.GlobalConfig.CacheDirectory, config.GlobalConfig.CacheFilePrefix), g.Provider.Name(), g.Provider.AwsProfileName, g.Provider.AwsRegion)
+	return fmt.Sprintf("%s%s_%s_%s_%s", path.Join(config.GlobalConfig.CacheDirectory, config.GlobalConfig.CacheFilePrefix), version.VersionNumber, g.Provider.Name(), g.Provider.AwsProfileName, g.Provider.AwsRegion)
 }
 
 func (g *AwsEc2Cache) cacheOutdated() bool {
