@@ -10,14 +10,14 @@ import (
 
 var (
 	// VersionNumber defines a version
-	VersionNumber = "1.0.6"
+	VersionNumber = "1.0.6-ztk"
 )
 
 // CheckForNewVersion checks for new version
 func CheckForNewVersion() {
 
 	githubTag := &latest.GithubTag{
-		Owner:      "zendesk",
+		Owner:      "zytek",
 		Repository: "goship",
 	}
 

@@ -1,3 +1,11 @@
+## 1.0.6-ztk (December 30, 2020)
+
+NEW FEATURES:
+- global preinit_hook
+- use profile as a last column in find
+- fix ec2 connect for tunneling
+- merge upstream 1.06
+
 ## 1.0.6 (September 14, 2020)
 
 NEW FEATURES:
