@@ -27,5 +27,4 @@ func findCmdFunc(cmd *cobra.Command, args []string) {
 	for _, r := range output {
 		fmt.Print(r.RenderLongOutput())
 	}
-
 }

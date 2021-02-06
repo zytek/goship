@@ -6,17 +6,17 @@ var DefaultShortOutputTemplate = "{{range .NativeObject.Tags}}{{if eq (.Key | St
 // DefaultLongOutputTemplate defines default template for the detailed output
 var DefaultLongOutputTemplate = `
 {{range .NativeObject.Tags}}{{if eq (.Key | String) "Name"}}{{.Value}}{{end}}{{end}}
-  profile             {.ProfileName}
-  ami_id              {.NativeObject.ImageId}}
-  az                  {.NativeObject.Placement.AvailabilityZone}}
-  dns_name            {.NativeObject.PublicDnsName}}
-  id                  {.NativeObject.InstanceId}}
-  instance_type       {.NativeObject.InstanceType}}
-  key_name            {.NativeObject.KeyName}}
-  private_dns_name    {.NativeObject.PrivateDnsName}}
-  private_ip          {.NativeObject.PrivateIpAddress}}
-  public_ip           {.NativeObject.PublicIpAddress}}
+  profile             {{.ProfileName}}
+  ami_id              {{.NativeObject.ImageId}}
+  az                  {{.NativeObject.Placement.AvailabilityZone}}
+  dns_name            {{.NativeObject.PublicDnsName}}
+  id                  {{.NativeObject.InstanceId}}
+  instance_type       {{.NativeObject.InstanceType}}
+  key_name            {{.NativeObject.KeyName}}
+  private_dns_name    {{.NativeObject.PrivateDnsName}}
+  private_ip          {{.NativeObject.PrivateIpAddress}}
+  public_ip           {{.NativeObject.PublicIpAddress}}
   tags
-    {{range .NativeObject.Tags}}{{.Key | String | printf "%-10s"}}        {{.Value}}
+    {{range .NativeObject.Tags}}{{.Key | String | printf "%-13s"}}        {{.Value}}
     {{end}}
 `
