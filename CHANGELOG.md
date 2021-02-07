@@ -1,3 +1,7 @@
+## 1.0.6-ztk2 (Feb 7, 2021)
+
+- bugfix: fix output of find subcommand
+
 ## 1.0.6-ztk (December 30, 2020)
 
 NEW FEATURES:
