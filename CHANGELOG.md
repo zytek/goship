@@ -1,3 +1,7 @@
+## 1.0.6-ztk3 (Feb 7, 2021)
+
+- bugfix: use proper ssh key path in tunnel subcommand
+
 ## 1.0.6-ztk2 (Feb 7, 2021)
 
 - bugfix: fix output of find subcommand

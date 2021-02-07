@@ -65,7 +65,7 @@ func tunnelCmdFunc(cmd *cobra.Command, args []string) {
 			fmt.Printf("Failed to push SSH key: %v", err)
 			os.Exit(1)
 		}
-		baseCommand = append(baseCommand, "-i", config.GlobalConfig.EC2ConnectKeyPath)
+		baseCommand = append(baseCommand, "-i", sshPrivKeyPath(config.GlobalConfig.EC2ConnectKeyPath))
 	}
 
 	tunnelCommand := append(baseCommand, []string{
